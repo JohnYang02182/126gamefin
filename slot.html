@@ -1,0 +1,612 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<meta http-equiv="Content-Type" content="text/html; charset=utf-8">
+	<title>126游戏网</title>
+	<meta name="viewport" content="width=device-width, initial-scale=1, user-scalable=0">
+	
+	<script src="lib/jquery_3.1.1/jquery.min.js"></script>
+	<script src="lib/jquery.validate/jquery.validate.min.js"></script>
+	<script src="lib/jquery.cookie/jquery.cookie.js"></script>
+	<script src="https://cdnjs.cloudflare.com/ajax/libs/modernizr/2.8.3/modernizr.min.js"></script>
+	<script src="lib/jquery.swipe/jquery.touchSwipe.min.js"></script>
+	<link rel="stylesheet" type="text/css" href="lib/font-awesome-4.7.0/css/font-awesome.min.css">
+	<link rel="stylesheet" href="dist/style.css">
+
+</head>
+<body>	
+	<header></header>
+	<nav></nav>
+	<section class="main">
+	  <div class="slot">
+	  	<div class="banner_container" id="bannerControl">
+	  		<div class="banner_gallery">
+		  		<a href="#" class="items">
+		  			<img src="img/slot/slot_banner_1@1x.png" alt="">
+		  		</a>
+		  		<a href="#" class="items">
+		  			<img src="img/slot/slot_banner_2@1x.png" alt="">
+		  		</a>
+		  		<a href="#" class="items">
+		  			<img src="img/slot/slot_banner_3@1x.png" alt="">
+		  		</a>		  		
+	  		</div>
+	  		<span class="next"><i class="fa fa-chevron-right"></i></span>
+	  		<span class="prev"><i class="fa fa-chevron-left"></i></span>
+	  	</div>
+	  	<div class="categories">
+	  		<div class="brands">
+	  			<div class="container">
+	  				<div class="list_container">
+			  			<ul>
+			  				<!-- <li>PT</li>
+			  				<li class="active">MG</li>
+			  				<li>PNG</li>
+			  				<li>QT</li> -->
+			  			</ul>
+		  			</div>
+		  			<div class="favorite">
+			  			<i class="fa fa-star icon"></i>
+			  			<span>我的收藏</span>
+			  		</div>
+			  		<div class="search">
+			  			<div class="search_field">
+			  				<input type="text" placeholder="搜尋遊戲名稱">	  			
+			  				<span class="submit">GO</span>
+			  			</div>		  			
+			  			<i class="fa fa-search icon"></i>
+			  		</div>
+		  		</div>
+	  		</div>
+	  		<div class="kinds">
+	  			<div class="container">
+		  			<ul>
+		  				<!-- <li>全部</li>
+		  				<li class="active">熱門遊戲</li>
+		  				<li>最新遊戲</li>
+		  				<li>老虎機</li>
+		  				<li>桌面遊戲</li>
+		  				<li>視頻撲克</li> -->
+		  			</ul>		  			
+		  		</div>
+	  		</div>
+	  	</div>
+	  	<div class="game_list clearfix" id="playgame_slot"> <!-- 新增id -->
+		  	<!-- <div class="game"></div> -->
+	  	</div>
+	  </div>
+	</section>
+	<!-- <div class="service"></div>	     -->
+	<footer></footer>			
+	<script src="dist/script.js"></script>
+	<script>
+	$(document).ready(function(){
+		var u_token = $.cookie("token");
+
+		$('header').append(el_header);
+		$('nav').append(el_nav);
+		$('footer').append(el_footer);
+		$('nav').after(el_marquee);
+		$('body').after(el_loginBox);
+
+		setMarquee(true);
+		
+		//3D Banner效果
+		slider.init({autoplay: 1});		
+		
+		//需要在畫面變動時做處理/更新的 fn
+		pageRefresh(function(){
+				//平板以上尺寸，滑動過 Banner 後，篩選條固定
+				if($(window).outerWidth() >= 768){
+					//綁定滾定事件	  		
+					$(window).scroll(function(){
+			  		var filterBarTop = 135;// 篩選條固定之高度
+			  		var marginTop = 106;   // 內容下推高度
+			  		var scrollTop = 220;   // 頁面滑動高度
+			  		//桌面版參數
+				  	if($(window).outerWidth() >= 1024){
+				  		filterBarTop = 155;
+				  		marginTop = 146;
+				  		scrollTop = 355;
+				  	}
+						// console.log($(window).scrollTop());
+						if($(window).scrollTop() >= scrollTop){
+							$('.categories').css({
+								"position" : "fixed",
+								"z-index" : "999",
+								"top" : filterBarTop + "px",
+								"background-color" : "#fff"
+							});
+							$('.game_list').css("margin-top",marginTop + "px");							
+						}else{
+							$('.categories').css({
+								"position" : "",
+								"z-index" : "",
+								"top" : "",
+								"background-color" : "transparent"
+							});
+							$('.game_list').css("margin-top","");							
+						}
+					});
+				}else{
+					$('.categories').css({
+						"position" : "",
+						"z-index" : "",
+						"top" : "",
+						"background-color" : "transparent"
+					});
+					$('.game_list').css("margin-top","");
+					//解除視窗滾動事件綁定
+					$(window).off("scroll");
+				}
+
+				//3D Banner效果
+				slider.destroy(); //視窗大小變動時銷毀
+				if($(window).outerWidth() >= 1024){
+					//RESIZE時寬度大於1024要拿掉 OPEN 不然會跑版
+					$('.search_field').removeClass('open');
+					slider.init({
+						autoplay: 1,
+						l_rOffset: 350
+					});
+				}else{
+					slider.init({autoplay: 1});
+				}
+		});	
+		//增加touch_判斷
+
+		
+		//頁面資料初始查詢
+		dataInitial();
+
+		//搜尋框
+		$('.fa-search.icon').on("click", function(){
+			$(this).siblings('.search_field').toggleClass('open');
+			if($(this).siblings('.search_field').hasClass('open') && $(window).outerWidth() < 768){
+				$('.favorite').hide();
+			}else{
+				$('.favorite').show();
+			}			
+		});
+		
+		$('.search_field .submit').on('click',function(e){
+			// 遊戲搜尋
+			if($(this).siblings("input").val().length > 0) {
+				getGameInfoListByGameName(e);
+			}else{
+				console.log("EMPTY")
+			}
+		});
+
+		//遊戲分類項目點擊
+		$('.kinds').on("click", "li", function(e){	
+			//查詢對應分類下的遊戲列表
+			getGameInfoList(e);
+
+			//分類項目Active
+			$('.kinds li').removeClass('active');
+			$(this).addClass('active');
+		});
+
+		//遊戲平台列表點擊
+		$('.brands').on("click", "li", function(e){			
+  		//查詢遊戲分類
+  		getProInfoList(event);	
+
+			//遊戲平台項目點擊
+			$('.brands li').removeClass('active');
+			$(this).addClass('active');
+		});
+
+
+
+
+    //取得平台資料並做預設的資料查詢
+		function dataInitial() {
+			//查詢遊戲平台			
+			var setting = {  
+	      url: API_BaseuUrl + "/common/getPlatformInfoList",  
+	      method: "POST",
+	      contentType: 'application/json',     
+	      data: JSON.stringify({
+	      	"companyId": 3
+	      }) 
+	    };			    
+	    $.ajax(setting).done(function(data) {
+	        console.log( data );
+	        if(data.code == 0){	  	
+	        	if(data.data.length > 0){        		
+	        		$('.brands ul').html('');
+	        		for(var i = 0; i< data.data.length; i++){			  
+	        				$('.brands ul').append('<li data-id="' + data.data[i].id + '">' + data.data[i].platformNameCn + '</li>')      			
+	        		}		
+	        		//預設點擊第一個平台
+	        		$('.brands li').eq(0).addClass('active');	   
+
+	        		//查詢遊戲分類(預設查詢第一個遊戲平台)
+	        		var DEFAULT_ID =  data.data[0].id; //預設查詢第一筆的遊戲分類
+	        		getProInfoList(null, {
+	        			id: DEFAULT_ID,
+	        			successCallback: function(){
+	        				//查詢該分類的遊戲，預設觸發第一個分類
+	        				$('.kinds li').eq(0).trigger('click');
+	        			}
+	        		}); 				  
+
+	        	}else{
+	        		//查無資料
+	        		alert('遊戲平台查詢錯誤..');
+	        	}	         
+	        	
+	        }else{
+	          //Ajax成功但取得內容錯誤
+	        }       
+	    }).fail(function() {
+	      //Ajax失敗
+	    });
+		}
+		/*
+		 * 取得平台遊戲分類資料
+		 * event       : event object
+		 * obj(option) : {
+		 *								 id, successCallback
+		 *               }
+		 * obj參數設計給預設查詢使用
+		 */
+		function getProInfoList(event, obj) {
+			// console.log($(event.target).data("id"));
+			console.log(obj);
+  		//查詢遊戲分類
+  		var setting = {  
+	      url: API_BaseuUrl + "/common/getProInfoList",  
+	      method: "POST",
+	      contentType: 'application/json',     
+	      data: JSON.stringify({
+	      	"companyId": 3,
+	      	"platformId": obj ? obj.id : $(event.target).data("id")
+	      }) 
+	    };
+	    $.ajax(setting).done(function(data) {
+	      console.log( data );
+	      if(data.code == 0){	 				      	
+	        if(data.data.id){
+	        	$('.kinds ul').html(''); 	
+
+	        	for(var i = 0; i< data.data.proInfoList.length; i++){	
+	        		$('.kinds ul').append('<li data-proId="' + data.data.proInfoList[i].id + '">' + data.data.proInfoList[i].proNameCn + '</li>');
+	        	}
+
+	        	//如果有傳入callback則執行	        	
+	        	obj && obj.successCallback && obj.successCallback();
+
+	        }else{
+        		//查無資料
+        		alert('遊戲分類查詢錯誤');
+        	}	 
+	      }else{
+          //Ajax成功但取得內容錯誤
+        } 
+	    }).fail(function() {
+	      //Ajax失敗
+	    });		
+		}
+
+		var gameUrl;
+		//取得遊戲資料
+		function getGameInfoList(event) {
+			// console.log($(event.target).data("proid"));
+			//查詢對應分類下的遊戲列表
+			var setting = {  
+	      url: API_BaseuUrl + "/common/getGameInfoList",  
+	      method: "POST",
+	      contentType: 'application/json',     
+	      data: JSON.stringify({
+	      	"companyId": 3,
+	      	"proId": $(event.target).data("proid")
+	      }) 
+	    };
+	    $.ajax(setting).done(function(data) {
+	      console.log( data );
+	      if(data.code == 0){	 				      	
+	        if(data.data.id){
+	        	// $('.game_list').html(''); 	
+	        	// console.log(JSON.stringify(data));
+	        	console.log(data);
+	        	for(var i = 0; i< data.data.proInfoList[0].gameInfoList.length; i++){	
+	        		var gameInfo = data.data.proInfoList[0].gameInfoList[i];
+/*修改 315-355*/
+					// $('.game_list').append('<div class="game">'+'<a href="" data-gameCode="' + gameInfo.gameCode + '" data-platformCode="'+data.data.platformCode+'" data-id="'+gameInfo.id+'">'+'<img src="img/slot/slot_list_01@1x.jpg">'+'</a>'+'<p>' + gameInfo.gameNameCn +'<span class="add_favorite">'+'<i class="fa fa-star"></i>'+'</span>'+ '</p>'+'</div>'+'<a href="aa" target= "_balnk" class="toGame">'+'</a>');
+		        }	
+				var platformCode_val;
+				var gameId_val;	
+				var anchor;	
+				var collect;			  						
+	        	$('#playgame_slot .game a').click(function(e){
+	        		e.preventDefault();
+	        		platformCode_val = $(this).attr('data-platformCode');
+	        		gameId_val = $(this).attr('data-id');
+	        		anchor = this;
+	        		palygame(platformCode_val,gameId_val,function(msg){
+	        			console.log($(anchor).children('a').attr('href'));
+	        			gameUrl = msg.data.gameUrl;
+						$(anchor).parent().siblings('a').attr('href',gameUrl);
+						$(anchor).parent().siblings('.toGame')[0].click();
+	        		});
+				});
+
+				$('.add_favorite i').on('click',function(e){
+					$(this).toggleClass('active');
+
+					if($(this).hasClass('active')){
+						// alert('hey');
+						gameId_val = $(this).parents('p').siblings('a').attr('data-id')
+						collect = 1;
+						console.log(collect);
+						console.log(gameId_val);
+						addFavorit(gameId_val,collect);
+					}else{
+						collect = 2;
+						console.log(collect);
+						console.log(gameId_val);
+						addFavorit(gameId_val,collect);
+					}
+					// console.log(e.target)
+					// console.log(this)
+					// alert('ya');
+				});
+/*修改*/	        	 
+	        }else{
+        		//查無資料
+        		alert('遊戲查詢錯誤..');
+        		// $('.game_list').html(''); 	
+        	}	 
+	      }else{
+          //Ajax成功但取得內容錯誤
+        } 
+	    }).fail(function() {
+	      //Ajax失敗
+	    });	
+		}
+
+
+/*新增 370-485*/		
+		//玩遊戲api
+		function palygame(platformCode,gameId,callback){
+			console.log(platformCode+"/"+gameId)
+		  var data = {
+		       "platformCode": platformCode,
+		       "gameId": gameId
+		      };
+		  $.ajax({
+		    method: "POST",
+		    url: API_BaseuUrl + "/game/playGame",
+		    contentType: 'application/json',
+		    dataType: 'json',
+		    data: JSON.stringify(data),
+		    headers: {
+		      token : u_token
+		    }
+		  }).done(function(msg){      
+
+		    if(msg.code === '0' && msg.data){   
+				console.log(msg); 
+				callback(msg)      
+		    }else{
+		        console.log(msg.code)
+		    }
+		  })
+		  .fail(function() {
+		    console.log( "playGame error" );
+		  })			
+		}
+		//收藏遊戲
+		function addFavorit(gameId_val,collect){
+		  var data = {
+		       "gameId": gameId_val,
+		       "collect": collect
+		      };
+		  $.ajax({
+		    method: "POST",
+		    url: API_BaseuUrl + "/game/saveCollectGame",
+		    contentType: 'application/json',
+		    dataType: 'json',
+		    data: JSON.stringify(data),
+		    headers: {
+		      token : u_token
+		    }
+		  }).done(function(msg){      
+
+		    if(msg.code === '0' && msg.data){   
+				console.log(msg); 
+				// callback(msg)      
+		    }else{
+		        console.log(msg.code)
+		    }
+		  })
+		  .fail(function() {
+		    console.log( "saveCollectGame error" );
+		  })
+		}
+		// 查詢收藏遊戲
+		function getFavorit(){
+		  $.ajax({
+		    method: "POST",
+		    url: API_BaseuUrl + "/game/getCollectGameList",
+		    contentType: 'application/json',
+		    dataType: 'json',
+		    // data: JSON.stringify(data),
+		    headers: {
+		      token : u_token
+		    }
+		  }).done(function(msg){      
+
+		    if(msg.code === '0' && msg.data){   
+				console.log(msg);
+				// $('.game_list').html(''); 
+			      	$.each(msg.data, function(idx, obj){
+			        var item = [];
+				        item.push('<div class="game" >');
+				        item.push('<a href="" data-gameCode="');
+				        item.push(obj.gameCode);
+				        item.push('" data-platformCode="');        
+				        item.push(obj.platformCode);
+				        item.push('" data-id="');
+				        item.push(obj.gameId);
+				        item.push('"><img src="img/slot/slot_list_01@1x.jpg');
+				        // item.push(obj.imgUrl);
+				        item.push('"></a><p>');
+				        item.push(obj.gameNameCn);
+				        item.push('<span class="add_favorite"><i class="fa fa-star active"></i></span></p></div><a href="" target="_blank" class="toGame">'+'</a>');			    
+			        // $('.game_list').append(item.join(""));
+		      	}); 
+
+	        	$('#playgame_slot .game a').click(function(e){
+	        		e.preventDefault();
+	        		platformCode_val = $(this).attr('data-platformCode');
+	        		gameId_val = $(this).attr('data-id');
+	        		anchor = this;
+	        		palygame(platformCode_val,gameId_val,function(msg){
+	        			// console.log(anchor);
+	        			gameUrl = msg.data.gameUrl;
+						$(anchor).parent().siblings('a').attr('href',gameUrl);
+						$(anchor).parent().siblings('.toGame')[0].click();
+	        		});
+	        	});
+		    }else{
+		        console.log(msg.code)
+		    }
+		  })
+		  .fail(function() {
+		    console.log( "getFavorit error" );
+		  })
+		}
+
+		$('.favorite').on('click',function(){
+			getFavorit();
+		});
+
+
+		//透過搜尋字串取得遊戲資料
+		function getGameInfoListByGameName(event) {
+			 console.log($(event.target).siblings('input').val());
+			//查詢對應分類下的遊戲列表
+			var setting = {  
+	      url: API_BaseuUrl + "/common/getGameInfoListByGameName",  
+	      method: "POST",
+	      contentType: 'application/json',     
+	      data: JSON.stringify({
+	      	"companyId": 3,
+	      	"gameName": $(event.target).siblings('input').val()
+	      }) 
+	    };
+	    $.ajax(setting).done(function(data) {
+		    console.log( data );
+		    if(data.code == 0){	 				      	
+		    	if(data.data.length > 0){
+		        	// $('.game_list').html(''); 
+		        	for(var i = 0; i< data.data.length; i++){	
+		        		var platform = data.data[i];
+		        		for(var j = 0; j < platform.proInfoList.length; j++){
+		        			var category = platform.proInfoList[j];
+		        			var gameInfo = category.gameInfoList[0];
+							// $('.game_list').append('<div class="game">'+'<a href="" data-gameCode="' + gameInfo.gameCode + '" data-platformCode="'+data.data[j].platformCode+'" data-id="'+gameInfo.id+'">'+'<img src="img/slot/slot_list_01@1x.jpg">'+'</a>'+'<p>' + gameInfo.gameNameCn + '<span class="add_favorite">'+'<i class="fa fa-star"></i>'+'</span>'+'</p>'+'</div>'+'<a href="aa" target= "_balnk" class="toGame">'+'</a>');	
+						}
+		        	}
+/*新增 514-525*/        
+				$('#playgame_slot .game a').click(function(e){
+	        		e.preventDefault();
+	        		var platformCode_val = $(this).attr('data-platformCode');
+	        		var gameId_val = $(this).attr('data-id');
+	        		var anchor = this;
+	        		console.log(platformCode_val+'/'+gameId_val)
+	        		palygame(platformCode_val,gameId_val,function(msg){
+	        			// console.log($(anchor).children('a').attr('href'));
+	        			gameUrl = msg.data.gameUrl;
+						$(anchor).parent().siblings('a').attr('href',gameUrl);
+						$(anchor).parent().siblings('.toGame')[0].click();
+	        		});
+				});
+
+		      	}else{
+	        		//查無資料
+	        		alert('無符合的遊戲');
+	        		// $('.game_list').html(''); 	
+		    	}
+
+		    }else{
+		       //Ajax成功但取得內容錯誤
+		    } 
+	    }).fail(function() {
+	      //Ajax失敗
+	    });	
+		}
+
+
+
+
+
+// '<div class="game">'+'<a href="" data-gameCode="' + gameInfo.gameCode + '" data-platformCode="'+data.data[j].platformCode+'" data-id="'+gameInfo.id+'">'+'<img src="img/slot/slot_list_01@1x.jpg">'+'</a>'+'<p>' + gameInfo.gameNameCn + '<span class="add_favorite">'+'<i class="fa fa-star"></i>'+'</span>'+'</p>'+'</div>'+'<a href="aa" target= "_balnk" class="toGame">'+'</a>'
+
+
+
+
+
+
+
+
+
+
+
+
+		//測試用假資料
+		var game = `<div class="game">
+										<div class="game_content">
+											<img src="img/slot/slot_list_01@1x.jpg">
+								  			<p>皇室化裝舞會
+								  			<span class="add_favorite">
+								  				<i class="fa fa-star"></i>
+								  			</span></p>
+							  			</div>
+										<div class="paly_btn">
+														<a href="#" class="demo">+ 免费试玩</a>
+														<span class="slash">&nbsp;&nbsp;&#8260;&nbsp;&nbsp;</span>
+														<a class="btn btn-start" href="#">进入游戏</a>
+													</div>
+						  		</div>`;
+
+						  		// <a href="javascript:;"><div class="demo"></div>
+							  	// 		<img src="img/slot/slot_list_01@1x.jpg"></a>
+						  		// <div class="game">
+						  		// 	<a href="javascript:;">
+							  	// 		<img src="img/slot/slot_list_02@1x.jpg"></a>
+							  	// 		<p>歐洲輪盤</p>
+							  	// 		<span class="add_favorite">
+							  	// 			<i class="fa fa-star"></i>
+							  	// 		</span>
+							  		
+						  		// </div>
+						  		// <div class="game">
+						  		// 	<a href="javascript:;">
+							  	// 		<img src="img/slot/slot_list_03@1x.jpg"></a>
+							  	// 		<p>珠寶盒</p>
+							  	// 		<span class="add_favorite">
+							  	// 			<i class="fa fa-star"></i>
+							  	// 		</span>
+							  			
+						  		// </div>
+						  		// <div class="game">
+						  		// 	<a href="javascript:;">
+							  	// 		<img src="img/slot/slot_list_04@1x.jpg"></a>
+							  	// 		<p>巫師的寶石</p>
+							  	// 		<span class="add_favorite">
+							  	// 			<i class="fa fa-star"></i>
+							  	// 		</span>
+							  			
+						  		// </div>`
+		for(var i=0; i<8; i++){
+			$('.game_list').append(game);
+		}
+	}) //end of document.ready	
+	</script>
+</body>
+</html>

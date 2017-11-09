@@ -1,0 +1,1640 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<meta http-equiv="Content-Type" content="text/html; charset=utf-8">
+	<title>126游戏网</title>
+	<meta name="viewport" content="width=device-width, initial-scale=1, user-scalable=0">
+	
+	<script src="lib/jquery_3.1.1/jquery.min.js"></script>
+	<script src="lib/jquery.validate/jquery.validate.min.js"></script>
+	<script src="lib/jquery.cookie/jquery.cookie.js"></script>
+	<link rel="stylesheet" type="text/css" href="lib/font-awesome-4.7.0/css/font-awesome.min.css">
+	<link rel="stylesheet" href="dist/style.css">
+
+	<!-- For datepicker -->
+	<!-- <link rel="stylesheet" type="text/css" href="https://code.jquery.com/ui/1.12.1/themes/base/jquery-ui.css"> -->
+	<script src="https://code.jquery.com/ui/1.12.1/jquery-ui.js"></script>	
+</head>
+<body>	
+	<header></header>
+	<nav></nav>
+	<section class="main">	  
+	  	<div class="member">
+	  		<h3 class="title">会员中心</h3>
+	  			<!-- 使用者资讯 -->
+	  			<div class="users">
+					<div class="user clearfix">
+						<div class="user_icon"></div>
+						<div class="user_details">
+							<p class="hello_text">Hi <span class="user_name">User</span>	</p>
+							<p class="user_level">当前等级：<span class="level">普通</span></p>
+						</div>
+						<div class="user_toolbar clearfix">
+							<a href="invite_havemember.html"><div class="invite_friends">邀请好友</div></a>
+							<a href="emergency.html"><div class="rescue_application">救援金申请</div></a>
+						</div>
+					</div>
+					<!-- 钱包 -->
+					<div class="balance clearfix">
+						<div class="main_account">
+							<span class="acnt_title">中心钱包</span>
+							<span class="main_balance">9899755</span><span class="digit">.00</span><div class="switch"></div>
+						</div>
+						<div class="balance_item">
+							<ul >
+<!-- 								<li>
+									<div class="item_w">
+										<span>PT1平台</span>
+										<span class="digit" id="pt_money">12345.00</span>
+										<button class="reload"></button>
+									</div>
+								</li>	
+								<li>
+									<div class="item_w">
+										<span>PT2平台</span>
+										<span class="digit" id="pt_money">12345.00</span>
+										<button class="reload"></button>
+									</div>
+								</li>							
+								<li>
+									<div class="item_w">
+										<span>PT3平台</span>
+										<span class="digit" id="pt_money">12345.00</span>
+										<button class="reload"></button>
+									</div>
+								</li>	
+								<li>
+									<div class="item_w">
+										<span>PT4平台</span>
+										<span class="digit" id="pt_money">12345.00</span>
+										<button class="reload"></button>
+									</div>
+								</li>													
+								<li>
+									<div class="item_w">
+										<span>PT5平台</span>
+										<span class="digit" id="pt_money">12345.00</span>
+										<button class="reload"></button>
+									</div>
+								</li>		 -->
+							</ul>
+							<span class="nextArrow padArrow" data-width="2">
+								<i class="fa fa-angle-right" aria-hidden="true" data-width="2"></i>
+							</span>
+							<span class="nextArrow desktopArrow" data-width="3">
+								<i class="fa fa-angle-right" aria-hidden="true" data-width="3"></i>
+							</span>
+							<span class="prevArrow">
+								<i class="fa fa-angle-left" aria-hidden="true"></i>
+							</span>
+						</div>
+					</div>
+				</div>
+				<!-- 使用者操作 -->
+				<div class="management">
+					<div class="mng_content">
+						<div class="tab_w">
+							<ul class="main_tab tabs clearfix">
+								<li class="active">资金管理</li>
+								<li>个人资料</li>
+							</ul>
+						</div>
+						<!-- 资金管理 -->
+						<div class="fund main_content box">
+							<div class="tab_w">
+							<ul class="sub_tab tabs clearfix">
+								<li>
+									<img src="img/icons/save_money@3x.png" alt="">存款
+								</li>
+								<li>
+									<img src="img/icons/money_transfer@3x.png" alt="">转帐
+								</li>
+								<li>
+									<img src="img/icons/deposit_money@3x.png" alt="">提款
+								</li>
+							</ul>
+							</div>
+							<!-- 存款 -->
+							<div class="fund_deposit sub_content box">
+								<div class="tab_w">
+									<ul class="inner_tab tabs clearfix" id="PaymentPlatformList">
+										<!-- <li>在线充值</li>
+										<li>微信存款</li>
+										<li>支付宝存款</li>-->
+										<li class="active">网银转帐</li> 
+										<!-- <li>QQ支付</li> -->
+									</ul>
+								</div>
+
+								<!-- 网银转帐 -->
+								<div class="inner_content box online_banking">
+									<form action="">
+										<div class="mem_balance">
+											<div class="balance_title">您的余额
+												<span class="balance_no">0.00</span><span>RMB</span>
+												<button class="reload"></button>
+											</div>
+<!-- 											<div class="min_deposit deposit">
+												<span>最小存款额</span>
+												<span>100 ¥</span>
+											</div> -->
+											<div class="max_deposit deposit">
+												<span>最小存款额</span>
+												<span>100 ¥</span>
+											</div>										
+										</div>
+
+										<div class="mem_input text-field input_center deposit_amount">
+											<span class="mem_title">存款金额</span>
+											<div class="mem_fix">
+												<input type="text" name="" id="Ebank_amount">
+												<span class="input-reset"></span>
+											</div>
+										</div>
+<!-- 
+										<div class="mem_input input_center deposit_banks">
+											<span class="mem_title">银行名称</span><select name="" id="">
+												<option value="">TEST1</option>
+												<option value="">TEST1</option>
+												<option value="">TEST1</option>
+											</select>
+										</div>
+
+										<div class="mem_input text-field input_center deposit_name">
+											<span class="mem_title">帐户名</span>
+											<input type="text" name="">
+											<span class="input-reset"></span>
+										</div>
+
+										<div class="mem_input text-field input_center deposit_time">
+											<span class="mem_title">卡号</span>
+											<input type="text" name="">
+											<span class="input-reset"></span>
+										</div>
+
+										<div class="mem_input text-field input_center serial_no">
+											<span class="mem_title">流水单号</span>
+											<input type="text" name="">
+											<span class="input-reset"></span>
+										</div> -->
+
+										<div class="btn btn-fill btn_submit confirm_payment" id="Ebank"><a href="#">确认支付</a></div>
+									</form>
+								</div>
+
+								<!-- 在线充值 -->
+								<div class="inner_content box online_recharge">
+									<div class="mem_balance">
+										<div class="balance_title">您的余额
+											<span class="balance_no">0.00</span><span>RMB</span>
+											<button class="reload"></button>
+										</div>
+										<div class="min_deposit deposit">
+											<span>最小存款额</span>
+											<span id="min_de">0.00</span>
+										</div>
+										<div class="max_deposit deposit">
+											<span>最大存款额</span>
+											<span id="max_de">0.00</span>
+										</div>
+									</div>
+
+									<div class="mem_input input_center payment_method ">
+										<span class="mem_title">支付渠道</span>
+										<select name="" id="paymentCode">
+											 <option value="">请选择支付渠道</option>
+										</select>
+									</div>
+									<div class="mem_input text-field input_center">
+										<span class="mem_title">存款金额</span>
+										<div class="mem_fix">
+											<input type="text" id="de_amount" class="Infoinput">
+											<span class="input-reset"></span>
+										</div>
+									</div>
+
+									<div class="mem_input banks_list">
+										<span class="mem_title">银行种类</span>
+
+
+										<!-- <select name="" id="bank_option_m" class="toPic_m">
+											<option value="">请选择银行</option>
+											<option value="">TEST1</option>
+										</select>-->
+										
+										<ul class="toPic clearfix" id="bank_option">
+											<!-- <li class="bank_logo" data-bankId="">
+												<img src="img/icons/bank_logo_ICBC@1x.jpg" alt="">
+											</li>			-->	
+											<li class="init">请先选择存款类型及支付渠道,再选择银行种类</li>			
+										</ul>
+									</div>
+
+									<div class="btn btn-fill btn_submit" id="de_confirm_payment"><a href="#">确认支付</a></div>
+
+
+								</div>
+								<!-- 微信存款 -->
+								<!-- <div class="inner_content box wechat_deposit"> -->
+	 								<!--<form action="">
+										<div class="mem_balance">
+											<div class="balance_title">您的余额
+												<span class="balance_no">0.00</span><span>RMB</span>
+												<button class="reload"></button>
+											</div>
+										</div>
+										<div class="mem_input payment_method">
+											<span class="mem_title">支付渠道</span><select name="" id="">
+												<option value="">TEST1</option>
+												<option value="">TEST1</option>
+												<option value="">TEST1</option>
+											</select>
+										</div>
+
+										<div class="mem_input deposit_amount">
+											<span class="mem_title">存款金额</span><input type="text" name="">
+										</div>
+										<div class="mem_input">
+											<span class="mem_title banks">银行种类</span><select name="" id="">
+												<option value="">请选择银行</option>
+												<option value="">TEST1</option>
+												<option value="">TEST1</option>
+												<option value="">TEST1</option>
+											</select>
+										</div>
+										<div class="btn btn-fill confirm_payment"><a href="#">确认支付</a></div>
+
+									</form> -->
+								<!-- </div> -->
+								<!-- 支付宝存款 -->
+								<!-- <div class="inner_content box alipay_deposit"></div> -->
+
+
+								<!-- QQ支付 -->
+								<!-- <div class="inner_content box QQ_payment"></div> -->
+							</div>
+							<!-- 转帐 -->
+							<div class="fund_transfer sub_content box">
+								<form action="" class="inner_content">
+									<div class="mem_balance">
+										<div class="balance_title">您的余额
+											<span class="balance_no">0.00</span><span>RMB</span>
+											<button class="reload"></button>
+										</div>
+										<div class="depositWrap">
+											<ul>
+												<!-- <li class="deposit">
+													<span>PT平台</span>
+													<span class="digit">0.00</span>
+													<button class="reload"></button>
+												</li>-->						 		
+											</ul>
+											<span class="nextArrow mobArrow" data-width="1">
+												<i class="fa fa-angle-right" aria-hidden="true" data-width="2"></i>
+											</span>
+											<span class="nextArrow padArrow" data-width="3">
+												<i class="fa fa-angle-right" aria-hidden="true" data-width="3"></i>
+											</span>
+											<span class="prevArrow">
+												<i class="fa fa-angle-left" aria-hidden="true"></i>
+											</span>	
+									
+										</div>
+									</div>
+
+									<div class="mem_input input_center">
+										<span class="mem_title">操作类型</span><select name="" id="main_account">
+											<option value="0">主帐户转入游戏帐户</option>
+											<option value="1">游戏帐户转入主帐户</option>
+										</select>
+									</div>
+
+									<div class="mem_input input_center">
+										<span class="mem_title">游戏帐户</span><select name="" id="trans_game">
+										</select>
+									</div>									
+									<div class="mem_input text-field input_center">
+										<span class="mem_title">金额</span>
+										<div class="mem_fix">
+											<input type="text" name="" id="transfermoney" class="Infoinput">
+											<span class="input-reset"></span>
+										</div>
+									</div>
+									<div class="mem_input input_center">
+										<span class="mem_title">优惠活动</span>
+										<input type="checkbox" name="" id="join" checked="checked">
+										<label for="join">下回再参与!</label>
+									</div>								
+									<div class="btn btn-fill btn_submit confirm_payment"><a href="#" id="submit_payment">确认支付</a></div>
+
+								</form>							
+							</div>
+							<!-- 提款 -->
+							<div class="fund_withdraw sub_content box">
+								<form action="" class="inner_content">
+									<div class="mem_balance">
+										<div class="balance_title">您的余额
+											<span class="balance_no">0.00</span><span>RMB</span>
+											<button class="reload"></button>
+										</div>
+										<div class="min_deposit deposit">
+											<span>最小提款额</span>
+											<span>10.00</span>
+										</div>
+										<div class="max_deposit deposit">
+											<span>最大提款额</span>
+											<span>50000.00</span>
+										</div>										
+									</div>
+									
+									<div class="go_binding">
+										<p>请您先绑定银行帐户,再进行提款操作</p>
+										<div class="btn btn-fill btn_submit to_binding"><a href="#">编辑绑定银行</a></div>
+									</div>
+
+									<div class="mem_input text-field input_center withdraw_amount">
+										<span class="mem_title">提款金额</span>
+										<div class="mem_fix">
+											<input type="text" name="" class="Infoinput">
+											<span class="input-reset"></span>
+										</div>
+									</div>
+
+									<div class="mem_input text-field input_center swithdraw_password">
+										<span class="mem_title">登入密码</span>
+										<div class="mem_fix">
+											<input type="password" name="" class="Infoinput">
+											<span class="input-reset"></span>
+										</div>
+									</div>
+
+									<div class="mem_input" id="bank_cards">
+										<span class="mem_title">收款方式</span>
+										<div class="bank_w"></div>
+										<div class="bank_w"></div>
+										<div class="bank_w"></div>
+<!-- 										<div class="banks">
+											<img src="img/icons/bank_logo_ICBC@1x.jpg" alt="" class="bank_img">
+											<div class="bank_account">**** **** **** 4567</div>
+										</div>
+										<div class="banks">
+											<img src="img/icons/bank_logo_ABC@1x.jpg" alt="" class="bank_img">
+											<div class="bank_account">**** **** **** 4567</div>
+										</div>			
+										<div class="banks bank_no_account">
+											<span>暂时没有银行卡</span><span>请先绑定一张银卡</span>
+										</div> -->
+
+									</div>								
+
+									<div class="btn btn-fill btn_submit confirm_payment"><a href="#">确定</a></div>
+
+								</form>							
+							</div>
+
+							<!-- 最近游戏 -->
+							<div class="mem_game sub_content box">
+								<div class="game_list clearfix">
+									<div class="game_title">最近游戏</div>
+								</div>
+<!-- 								<div class="pagination">
+									<ul class="clearfix">
+										<li><a href="#">&lt;&lt;</a></li>
+										<li><a href="#">&lt;</a></li>
+										<li class="active"><a href="#">1</a></li>
+										<li><a href="#">2</a></li>
+										<li><a href="#">3</a></li>
+										<li><a href="#">4</a></li>
+										<li><a href="#">5</a></li>
+										<li><a href="#">&gt;</a></li>
+										<li><a href="#">&gt;&gt;</a></li>
+										</ul>
+								</div> -->
+							</div>
+
+						</div>
+						
+						<!-- 个人资料 -->
+						<div class="memInfo main_content box">
+							<div class="tab_w tab_scroll">
+								<ul class="sub_tab tabs clearfix">
+									<li class="option_infos active">
+										<img src="img/icons/message_hover@3x.png" alt="">用户信息
+									</li>
+									<li class="option_funds_record">
+										<img src="img/icons/funds_list@3x.png" alt="">资金纪录
+									</li>
+									<li class="option_game_record">
+										<img src="img/icons/game_list@3x.png" alt="">游戏纪录
+									</li>
+									<li class="option_binding">
+										<img src="img/icons/add_card@3x.png" alt="">绑定银行卡
+									</li>
+									<li class="option_messages">
+										<img src="img/icons/news_message@3x.png" alt="">站内信
+									</li>
+									<li class="option_reset_pwd">
+										<img src="img/icons/setting_code@3x.png" alt="">修改密码
+									</li>
+								</ul>
+							</div>
+							
+							<!-- 用户信息 -->
+							<div class="memInfo_infos sub_content box">
+								<div class="inner_content">
+									<form class="mem_Info">
+										<div class="mem_input text-field input_center">
+											<span class="mem_title">用户名</span>
+											<input type="text" name="" value="fake_account" disabled='true' placeholder="" id="accountName">
+										</div>
+										<div class="mem_input text-field input_center">
+											<span class="mem_title">姓</span>
+											<div class="mem_fix">
+												<input type="text" name="" id="lastName" class="Infoinput">
+												<span class="input-reset memberreset"></span>
+											</div>
+										</div>
+										<div class="mem_input text-field input_center">
+											<span class="mem_title">名</span>
+											<div class="mem_fix">
+												<input type="text" name="" id="firstName" class="Infoinput">
+												<span class="input-reset memberreset"></span>
+											</div>
+										</div>
+										<div class="mem_input text-field input_center">
+											<span class="mem_title">会员级别</span>
+											<input type="text" name="" id="memberRank" disabled="true">
+											<span class="input-reset memberreset"></span>
+										</div>
+										<div class="mem_input text-field input_center">
+											<span class="mem_title">性别</span>
+											<select name="" id="sex">
+												<option selected disabled>选择性别</option>
+												<option value="1">男</option>
+												<option value="2">女</option>
+											</select>
+										</div>
+										<div class="mem_input text-field input_center">
+											<span class="mem_title">生日</span>
+											<div class="mem_Info_birth">
+												<input type="text" name="" class="birthDate">
+												<i class="fa fa-calendar" aria-hidden="true"></i>
+											</div>
+											<!-- <span class="input-reset"></span> -->
+										</div>
+										<div class="mem_input text-field input_center">
+											<span class="mem_title">QQ号码</span>
+											<div class="mem_fix">
+												<input type="text" name="" id="qqnumber" class="Infoinput">
+												<span class="input-reset memberreset"></span>
+											</div>
+										</div>
+										<div class="mem_input text-field input_center mem_Info_mail">
+											<span class="mem_title">Email</span>
+											<div class="mem_fix">
+												<input type="text" name="" id="mail">
+												<span class="input-reset memberreset"></span>
+											</div>
+											<div class="btn btn-fill btn-check btn-check-email"><a href="javascript:;">邮箱验证</a></div>
+										</div>									
+										<div class="mem_input text-field input_center mem_Info_phone">
+											<span class="mem_title">手机号码</span>
+											<div class="mem_fix">
+												<input type="text" name="" id="phone" class="Infoinput">
+												<span class="input-reset memberreset"></span>
+											</div>
+											<div class="btn btn-fill btn-check btn-check-phone"><a href="javascript:;" >手机验证</a></div>
+										</div>
+
+										<div class="btn btn-fill mem_Info_save"><a href="#" id="savedata">保存</a></div>
+									</form>	
+								</div>							
+							</div>
+
+							<!-- 资金纪录 -->
+							<div class="memInfo_funds_record sub_content box">
+								<div class="tab_w">
+									<ul class="inner_tab tabs clearfix">
+										<li class="sub_option_deposit_record active">存款纪录</li>
+										<li class="sub_option_withdraw_record">提款纪录</li>
+										<li class="sub_option_transfer_record">转帐纪录</li>
+										<li class="sub_option_bet_record">下注纪录</li>
+										<li class="sub_option_promotion_record">优惠纪录</li>
+									</ul>
+								</div>
+								
+<!-- 								<div class="filter_bar clearfix">								
+									<div class="filter_date clearfix">
+										<p class="begin">
+											<input type="date" id="b_date">
+											<i class="fa fa-calendar"></i>
+										</p>
+									  <p class="line">―</p>
+									  <p class="end">
+									  	<input type="date" id="e_date">
+									  	<i class="fa fa-calendar"></i>
+									  </p>
+									</div> 
+									<div class="filter_search">
+										<i class="fa fa-search icon"></i>
+										<input type="text" name="" placeholder="搜寻">
+										<span class="search_btn">GO</span>
+									</div>
+								</div> -->
+								<!-- 存款纪录 -->
+								<div class="inner_content box deposit_record">
+									<div class="filter_bar clearfix">								
+										<div class="filter_date clearfix">
+											<p class="begin">
+												<input type="date" class="b_date">
+											</p>
+										  <p class="line">―</p>
+										  <p class="end">
+										  	<input type="date" class="e_date">
+										  </p>
+										</div> 
+									</div>								
+									<!-- 僅保留一筆結構樣本 -->
+									<div class="list_block_w">
+<!-- 										<div class="list_block clearfix">
+											<div class="list_data clearfix list_data_title">
+												<div class="data_title">存款编号</div>
+												<div class="data_content">CY20170406141157296</div>
+											</div>
+											<div class="list_data clearfix list_data_title">
+												<div class="data_title">存款时间</div>
+												<div class="data_content">2017-05-07 15:00:23</div>
+											</div>
+											<div class="list_data clearfix list_data_body">
+												<div class="data_title">存款类型</div>
+												<div class="data_content kind"><span>支付宝</span></div>
+											</div>
+											<div class="list_data clearfix list_data_body">
+												<div class="data_title">金额</div>
+												<div class="data_content money"><span>9899755.00</span></div>
+											</div>
+											<div class="list_data clearfix list_data_body">
+												<div class="data_title">状态</div>
+												<div class="data_content status"><span>审核失败</span></div>
+											</div>
+											<div class="list_data clearfix list_data_body">
+												<div class="data_title">备注</div>
+												<div class="data_content"></div>
+											</div>
+										</div> -->
+									</div>	
+									<div class="pagination deposit_record_pg">
+										<ul class="clearfix"></ul> 
+									</div>															
+								</div>
+
+								<!-- 提款纪录 -->
+								<div class="inner_content box withdraw_record">
+						
+									<!-- 僅保留一筆結構樣本 -->
+<!-- 									<div class="list_block clearfix">
+										<div class="list_data clearfix list_data_title">
+											<div class="data_title">提款编号</div>
+											<div class="data_content">CY20170406141157296</div>
+										</div>
+										<div class="list_data clearfix list_data_title">
+											<div class="data_title">提款时间</div>
+											<div class="data_content">2017-05-07 15:00:23</div>
+										</div>
+										<div class="list_data clearfix list_data_body">
+											<div class="data_title">提款类型</div>
+											<div class="data_content kind"><span>中国建设银行</span></div>
+										</div>
+										<div class="list_data clearfix list_data_body">
+											<div class="data_title">补银行卡号</div>
+											<div class="data_content card_num"><span>**** **** **** 4268</span></div>
+										</div>
+										<div class="list_data clearfix list_data_body">
+											<div class="data_title">金额</div>
+											<div class="data_content money"><span>9899755.00</span></div>
+										</div>
+										<div class="list_data clearfix list_data_body">
+											<div class="data_title">状态</div>
+											<div class="data_content status"><span>审核失败</span></div>
+										</div> -->
+										<!-- <div class="list_data clearfix list_data_body">
+											<div class="data_title">操作</div>
+											<div class="data_content">是</div>
+										</div> -->
+									<!-- 	<span class="down_arrow"></span>
+									</div>	 -->								
+								</div>
+								<!-- 转帐纪录 -->
+								<div class="inner_content box transfer_record">
+									<!-- 僅保留一筆結構樣本 -->
+									<!-- <div class="list_block clearfix">
+										<div class="list_data clearfix list_data_title">
+											<div class="data_title">转帐编号</div>
+											<div class="data_content">CY20170406141157296</div>
+										</div>
+										<div class="list_data list_data_hidden clearfix list_data_title">
+											<div class="data_title">提款时间</div>
+											<div class="data_content">2017-05-07 15:00:23</div>
+										</div>
+										<div class="list_data clearfix list_data_body">
+											<div class="data_title">转出方</div>
+											<div class="data_content">中心钱包</div>
+										</div>
+										<div class="list_data clearfix list_data_body">
+											<div class="data_title">转入方</div>
+											<div class="data_content">PT娱乐城</div>
+										</div>																			
+										<div class="list_data clearfix list_data_body">
+											<div class="data_title">奖金金额</div>
+											<div class="data_content money"><span>9899755.00</span></div>
+										</div>
+										<div class="list_data clearfix list_data_body">
+											<div class="data_title">状态</div>
+											<div class="data_content status"><span>审核失败</span></div>
+										</div>
+									</div> -->				
+								</div>
+								<!-- 下注纪录 -->
+								<div class="inner_content box bet_record">
+									<!-- 僅保留一筆結構樣本 -->	
+									<!-- <div class="list_block clearfix">
+										<div class="list_data clearfix list_data_title">
+											<div class="data_title">下注编号</div>
+											<div class="data_content">CY20170406141157296</div>
+										</div>
+										<div class="list_data list_data_hidden clearfix list_data_title">
+											<div class="data_title">下注时间</div>
+											<div class="data_content">2017-05-07 15:00:23</div>
+										</div>
+										<div class="list_data clearfix list_data_body">
+											<div class="data_title">游戏平台</div>
+											<div class="data_content">PT</div>
+										</div>
+										<div class="list_data clearfix list_data_body">
+											<div class="data_title">游戏名称</div>
+											<div class="data_content">疯狂的猴子</div>
+										</div>	
+										<div class="list_data clearfix list_data_body">
+											<div class="data_title">投注金额</div>
+											<div class="data_content money"><span>9899755.00</span></div>
+										</div>
+										<div class="list_data clearfix list_data_body">
+											<div class="data_title">输赢</div>
+											<div class="data_content win"><span>+15.00</span></div>
+										</div>															
+									</div> -->																			
+								</div>
+								<!-- 优惠纪录 -->
+								<div class="inner_content box promotions_record">
+									<!-- 僅保留一筆結構樣本 -->		
+									<!-- <div class="list_block clearfix">
+										<div class="list_data clearfix list_data_title">
+											<div class="data_title">优惠编号</div>
+											<div class="data_content">CY20170406141157296</div>
+										</div>
+										<div class="list_data clearfix list_data_title">
+											<div class="data_title">操作时间</div>
+											<div class="data_content">2017-05-07 15:00:23</div>
+										</div>
+										<div class="list_data clearfix list_data_body">
+											<div class="data_title">优惠名称</div>
+											<div class="data_content discount_name"><span>MG老虎机红利</span></div>
+										</div>										
+										<div class="list_data clearfix list_data_body">
+											<div class="data_title">金额</div>
+											<div class="data_content money"><span>9899755.00</span></div>
+										</div>
+									</div> -->									
+								</div>
+<!-- 								<div class="pagination">
+									<ul class="clearfix">
+										<li><a href="#">&lt;&lt;</a></li>
+										<li><a href="#">&lt;</a></li>
+										<li class="active"><a href="#">1</a></li>
+										<li><a href="#">2</a></li>
+										<li><a href="#">3</a></li>
+										<li><a href="#">4</a></li>
+										<li><a href="#">5</a></li>
+										<li><a href="#">&gt;</a></li>
+										<li><a href="#">&gt;&gt;</a></li>
+									</ul>
+								</div> -->
+							</div>
+
+							<!-- 游戏纪录 -->
+							<div class="memInfo_game_record sub_content box">
+								<div class="game_list clearfix">
+									<div class="game_title">最近游戏</div>
+								</div>
+								<div class="pagination">
+									<ul class="clearfix">
+										<li><a href="#">&lt;&lt;</a></li>
+										<li><a href="#">&lt;</a></li>
+										<li class="active"><a href="#">1</a></li>
+										<li><a href="#">2</a></li>
+										<li><a href="#">3</a></li>
+										<li><a href="#">4</a></li>
+										<li><a href="#">5</a></li>
+										<li><a href="#">&gt;</a></li>
+										<li><a href="#">&gt;&gt;</a></li>
+										</ul>
+								</div>
+							</div>
+
+							<!-- 绑定银行卡 -->
+							<div class="memInfo_binding sub_content box">
+								<div class="binding_cards">	
+									<div class="card_box">	
+										<ul class="clearfix" id="binding_cards">
+											<li class="binding_card"></li>
+											<li class="binding_card middlecard"></li>
+											<li class="binding_card"></li>
+<!--											<li class="binding_card">
+												<p class="binding_card_name">王晓民</p>
+												<p class="binding_card_bank">中国工商银行</p>
+												<p class="binding_card_num">**** **** **** 4567</p>
+												<p class="binding_card_bank_branch">九江县沙河街九江支行</p>
+												<span class="binding_bank_icon"></span>
+											</li>
+											<li class="binding_card middlecard">
+												<p class="binding_card_name">王建民</p>
+												<p class="binding_card_bank">中国工商银行</p>
+												<p class="binding_card_num">**** **** **** 2222</p>
+												<p class="binding_card_bank_branch">九江县沙河街九江支行</p>
+												<span class="binding_bank_icon"></span>
+											</li>							
+ 											<li class="binding_card no_card_binding">
+												<p class="p1">您未绑定有银行卡</p>
+												<p class="p2">请至少先绑定一张银行卡</p>
+												<span class="add_binding_bank_icon"></span>
+											</li>	 -->									
+										</ul>
+									</div>
+									<span class="next">&gt;</span>
+									<span class="prev">&lt;</span>
+								</div>
+								<div class="inner_content" id="binding_card_input">
+									<div class="binding_titlearea">
+										<div class="binding_title">添加绑定银行</div>
+									</div>
+<!-- 									<div class="promp_info">您已绑定了三张银行卡,暂不能绑定银行卡了</div> -->
+									<div class="mem_input input_center">
+										<span class="mem_title">所属银行</span>
+										<select name="" id="BankList" value="">
+											<option value="">请选择银行</option>
+										</select>
+									</div>
+									<div class="mem_input text-field input_center">
+										<span class="mem_title">持卡人</span>
+										<input type="text" id="BankCardUser" name="" placeholder="" disabled="disabled">
+										<span class="input-reset"></span>
+									</div>
+									<div class="mem_input text-field input_center">
+										<span class="mem_title">银行帐号</span>
+										<div class="mem_fix">
+											<input type="text" name="" id="BankCardAct" class="Infoinput">
+											<span class="input-reset"></span>
+										</div>
+									</div>
+									<div class="mem_input input_center">
+										<span class="mem_title">开户行省</span>
+										<select name="" id="ProvinceList" value="">
+											<option value="">请选择省</option>
+										</select>
+									</div>
+									<div class="mem_input input_center">
+										<span class="mem_title">开户行市</span>
+										<select name="" id="CityList" value="">
+											<option value="">请选择市</option>
+										</select>
+									</div>
+									<div class="mem_input input_center">
+										<span class="mem_title">开户支行</span>
+										<select name="" id="BankBranchList" value="">
+											<option value="">请选择支行</option>
+										</select>
+									</div>
+									<div class="btn btn-fill" id="createMemberBankCard">确定</div>
+								</div>
+							</div>
+
+							<!-- 站内信 -->
+							<div class="memInfo_messages sub_content box">
+								<div class="inner_content message_content">
+									<!-- 僅保留一組結構範本 -->
+									<!-- <div class="msg_box clearfix">
+									  <div class="chk">  
+									    <input type="checkbox" name="chk"/>
+									  </div>
+									  <div class="msg_header no_tap_highlight">
+									    <div class="msg_title"><b>Lorem ipsum dolor.</b></div>
+									    <img src="img/icons/arrowDown@3x.png" class="msg_arrow">
+									    <div class="msg_time">2017/01/01 15:30</div>
+									  </div>
+									  <div class="msg_content">Lorem ipsum dolor sit amet, consectetur adipisicing elit. Praesentium alias, animi libero. Lorem ipsum dolor sit amet, consectetur adipisicing elit. Officia reprehenderit ipsa nemo, necessitatibus voluptates, ex provident soluta quia. Deserunt, libero!</div>
+									</div>	 -->								
+								</div>
+								<div class="operation_bar">
+									<div class="select_all">
+										<input type="checkbox" id="all">
+										<label for="all" class="text">全选</label>
+									</div>
+									<div class="select_delete">
+										<span class="icon garbage"></span>
+										<span class='text'>删除</span>
+									</div>
+								</div>
+								<div class="pagination">
+									<ul class="clearfix">
+										<li><a href="#">&lt;&lt;</a></li>
+										<li><a href="#">&lt;</a></li>
+										<li class="active"><a href="#">1</a></li>
+										<li><a href="#">2</a></li>
+										<li><a href="#">3</a></li>
+										<li><a href="#">4</a></li>
+										<li><a href="#">5</a></li>
+										<li><a href="#">&gt;</a></li>
+										<li><a href="#">&gt;&gt;</a></li>
+									</ul>
+								</div>
+							</div>
+
+							<!-- 修改密码 -->
+							<div class="memInfo_reset_pwd sub_content box">
+								<div class="inner_content">
+									<form class="mem_Info">
+										<div class="mem_input text-field input_center">
+											<span class="mem_title">原密码</span>
+											<div class="mem_fix">
+												<input type="password" name="pwd" id="old_pw" class="Infoinput">
+												<span class="input-reset"></span>
+											</div>
+										</div>
+										<div class="mem_input text-field input_center">
+											<span class="mem_title">新密码</span>
+											<div class="mem_fix">
+												<input type="password" name="newpwd" id="new_pw" class="Infoinput">
+												<span class="input-reset"></span>
+											</div>
+										</div>
+
+										<div class="mem_input text-field input_center">
+											<span class="mem_title">确认新密码</span>
+											<div class="mem_fix">
+												<input type="password" name="newpwd_confirm" id="re_newpw" class="Infoinput">
+												<span class="input-reset"></span>
+											</div>
+										</div>
+										<div class="btn btn-fill "><a href="#" id="cofirm_pw">确定</a></div>
+									</form>
+								</div>
+							</div>
+						</div>
+					
+		  		</div>	
+	  	</div>	  
+	</section>
+
+	<div class="service"></div>
+	<footer></footer>			
+	<script src="dist/script.js"></script>
+	<script src="src/js/ApiTest_Sabine.js"></script>
+	<script src="src/js/john_ajax.js"></script>
+	<script src="src/js/api_functions.js"></script>
+	<script src="lib/jquery-ui/datepicker-zh-CN.js"></script>
+	<script>
+
+		$('header').append(el_header);		
+		$('nav').append(el_nav);
+		$('footer').append(el_footer);	
+		$('body').after(el_loginBox);
+		setMarquee(false);
+		
+		$('.game_list').on("click",".add_favorite", function(){		
+			//遊戲列表加入最愛功能	
+			$(this).find('i').toggleClass('active');
+		});
+		// var API_BaseuUrl = "https://192.168.0.99:8443/api/v1";
+		var API_BaseuUrl = "https://arriba-tpe.com:8443/api/v1";
+		var u_token = $.cookie("token");
+
+		//需要在畫面變動時做處理/更新的 fn
+ 		pageRefresh(function(){ 
+ 			$('.main').css("margin-top",'');
+      var mt = parseInt($('.main').css("margin-top"));
+    	$('.main').css("margin-top", mt-35+'px'); 			
+      //背景顏色需動態更新
+      if($(window).outerWidth()<768 ){
+        $('header').css("background-color","transparent");
+      }else{
+      	$('header').css("background-color","");
+      } 
+		});
+
+		// 手机版余额开合
+		$('.switch').on('click', function(){
+			$(this).toggleClass('open');
+			if($('.switch').hasClass('open')){ 
+				$('.balance_item').slideDown(500);		
+			}else{
+				$('.balance_item').slideUp(500);	
+			}			
+		});
+
+		// 钱包余额&平台余额左右移动
+		// // var ul_width = $('.balance_item ul>li').outerWidth();
+		// var current = 0;
+		// $('.balance_item .prevArrow').addClass('disable');
+		// $('.balance_item .prevArrow').on('click',function(){
+		// 	var li_width = 144;
+		// 	if (current === 0) return;
+		// 	current--;
+		// 	$('.balance_item ul').css({'transform':'translateX(-'+li_width*current+'px)'});
+		// 	if (current === 0) $('.prevArrow').addClass('disable');
+		// 	$('.balance_item .nextArrow').removeClass('disable');
+		// });	
+
+		// $('.balance_item .nextArrow').on('click',function(event){	
+		// 	console.log(event.target)
+		// 	var li_width = 144;
+		// 	var amount = $(".balance_item ul li").length;
+		// 	var movement = $(event.target).attr("data-width")
+		// 	console.log("moment", movement)
+		// 	console.log("current", current)
+		// 	if (current === amount-movement) return $('.nextArrow').addClass('disable');
+		// 	current++;
+		// 	$('.balance_item ul').css({'transform':'translateX(-'+li_width*current+'px)'});
+		// 	$('.balance_item .prevArrow').removeClass('disable');				
+		// });	
+		function moveDeposit(selector,li_W){
+			var current = 0;
+			$(selector).children('.prevArrow').addClass('disable');
+			$(selector).children('.prevArrow').on('click',function(){
+				var li_width = li_W;
+				if (current === 0) return;
+				current--;
+				$(selector).children('ul').css({'transform':'translateX(-'+li_width*current+'px)'});
+				if (current === 0) $('.prevArrow').addClass('disable');
+				$(selector).children('.nextArrow').removeClass('disable');
+			});	
+
+			$(selector).children('.nextArrow').on('click',function(event){	
+				// console.log(event.target)
+				var li_width = li_W;
+				var amount = $(selector).children('ul').children('li').length;
+				var movement = $(event.target).attr("data-width")
+				// console.log("moment", movement)
+				// console.log("current", current)
+				if (current === amount-movement) return $('.nextArrow').addClass('disable');
+				current++;
+				$(selector).children('ul').css({'transform':'translateX(-'+li_width*current+'px)'});
+				$(selector).children('.prevArrow').removeClass('disable');				
+			});
+		}
+		moveDeposit('.balance_item', 144);
+		moveDeposit('.depositWrap', 210);
+
+
+		// 页签切换
+		$('.tab_w li').on('click',function(){
+			$(this).addClass('active').siblings().removeClass('active');
+			var index = $(this).index()
+			$(this).parent().parent().siblings('.box').hide()
+			$($(this).parent().parent().siblings('.box')[index]).show()
+		});	
+
+		// 页签icon点击换图
+		$('.sub_tab li').on('click', function(){   
+		  // initail and collect srcs
+			var curIndex = $('.sub_tab li').index(this);
+			var srcs = [];
+			const DEFAULT_SRC = '@3x.png';
+			const HOVERED_SRC = '_hover@3x.png';
+			$('.sub_tab li').each(function(idx, v){
+				srcs.push($(v).children('img').attr('src'));
+			});
+
+			// process all srcs
+			srcs = srcs.map(function(src, idx) {
+				if (idx !== curIndex) {
+		    		if(src.indexOf(HOVERED_SRC) !== -1 ){
+		    			return src.replace(HOVERED_SRC, DEFAULT_SRC)
+		    		}else{
+		    			return src
+		    		}
+		    	} else {
+		    		if(src.indexOf(HOVERED_SRC) !== -1 ){
+		    			return src
+		    		}else{
+		    			return src.replace(DEFAULT_SRC, HOVERED_SRC)
+		    		}		    		
+		    	}
+		  	})
+		  
+		  // assign to DOM			
+			$('.sub_tab li').each(function (idx, v){
+				$(v).children('img').attr('src', srcs[idx])
+			})
+		})
+
+		// var deposit_form = `<form action="">
+		//                   <div class="mem_balance">
+		//                     <div class="balance_title">您的余额
+		//                       <span class="balance_no">0.00</span><span>RMB</span>
+		//                       <button class="reload"></button>
+		//                     </div>
+		// 					<div class="min_deposit deposit">
+		// 						<span>最小存款额</span>
+		// 						<span>10.00</span>
+		// 					</div>
+		// 					<div class="max_deposit deposit">
+		// 						<span>最大存款额</span>
+		// 						<span>50000.00</span>
+		// 					</div>
+		//                   </div>
+		//                   <div class="mem_input payment_method input_center">
+		//                     <span class="mem_title">支付渠道</span><select name="" id="">
+		//                       <option value="">TEST1</option>
+		//                       <option value="">TEST1</option>
+		//                       <option value="">TEST1</option>
+		//                     </select>
+		//                   </div>
+
+		//                   <div class="mem_input text-field deposit_amount input_center">
+		//                     <span class="mem_title">存款金额</span>
+		//                     <input type="text" name="">
+		//                     <span class="input-reset"></span>
+		//                   </div>
+		//                   <div class="btn btn-fill btn_submit confirm_payment"><a href="#">确认支付</a></div>
+		//                 </form>`;
+
+		// $('.wechat_deposit,.alipay_deposit').append(deposit_form);
+
+		// var game_title = `<div class="game_title">最近玩过的游戏</div>`;
+		// $('.game_list').append(game_title);
+		var game = `<div class="game"></a>
+										<a href="javascript:;">
+							  			<img src="img/slot/slot_list_01@1x.jpg">
+							  			<p>皇室化装舞会</p>
+							  			<span class="add_favorite">
+							  				<i class="fa fa-star"></i>
+							  			</span>
+										</a>
+						  		</div>
+						  		<div class="game">
+						  			<a href="javascript:;">
+							  			<img src="img/slot/slot_list_02@1x.jpg">
+							  			<p>欧洲轮盘</p>
+							  			<span class="add_favorite">
+							  				<i class="fa fa-star"></i>
+							  			</span>
+							  		</a>
+						  		</div>
+						  		<div class="game">
+						  			<a href="javascript:;">
+							  			<img src="img/slot/slot_list_03@1x.jpg">
+							  			<p>珠宝盒</p>
+							  			<span class="add_favorite">
+							  				<i class="fa fa-star"></i>
+							  			</span>
+							  		</a>	
+						  		</div>
+						  		<div class="game">
+						  			<a href="javascript:;">
+							  			<img src="img/slot/slot_list_04@1x.jpg">
+							  			<p>巫师的宝石</p>
+							  			<span class="add_favorite">
+							  				<i class="fa fa-star"></i>
+							  			</span>
+							  		</a>	
+						  		</div>`;
+
+		// for(var i=0; i<2; i++){
+		// 	$('.game_list').append(game);
+		// };						
+		// //用户信息-生日日期套件
+		$('.mem_Info_birth input').datepicker({
+			dateFormat : "yy-mm-dd",
+			regional: "zh-TW",
+			showAnim: "slideDown",
+			changeMonth: true,
+			changeYear: true,
+  			prevText: '<i class="fa fa-chevron-circle-left" aria-hidden="true"></i>',
+    		nextText: '<i class="fa fa-chevron-circle-right" aria-hidden="true"></i>',
+    		yearRange: "c-50:c-20",
+	        // yearRange: '-65:-20',
+	        // defultDate: '2017-01-01',
+	        // minDate:"-65Y",
+        	// maxDate:"-20Y" 
+		});
+
+		//资金纪录日期套件
+		// $( ".filter_date input" ).datepicker({
+		// 	dateFormat : "yy-mm-dd",
+		// 	regional: "zh-TW",
+		// 	showAnim: "slideDown"
+		// });
+
+		//提款纪录点击展开内容效果
+		$('.down_arrow').on('click', function(){
+			// console.log("DOWN");
+			$(this).parent().toggleClass('active');
+			$(this).parent().find('.list_data').eq(5).slideToggle(400);
+			$(this).parent().find('.list_data').eq(6).slideToggle(400);
+		});
+
+		// // ====== 资金纪录資料取得 ====== 
+
+
+		// //查詢 存款紀錄
+		// function getDepositList(){
+		// 	var DEPOSIT_SCHEMA = `<div class="list_block clearfix">
+		// 						<div class="list_data clearfix list_data_title">
+		// 							<div class="data_title">存款编号</div>
+		// 							<div class="data_content">'++'</div>
+		// 						</div>
+		// 						<div class="list_data clearfix list_data_title">
+		// 							<div class="data_title">存款时间</div>
+		// 							<div class="data_content">'++'</div>
+		// 						</div>
+		// 						<div class="list_data clearfix list_data_body">
+		// 							<div class="data_title">存款类型</div>
+		// 							<div class="data_content kind"><span>'++'</span></div>
+		// 						</div>
+		// 						<div class="list_data clearfix list_data_body">
+		// 							<div class="data_title">金额</div>
+		// 							<div class="data_content money"><span>'++'</span></div>
+		// 						</div>
+		// 						<div class="list_data clearfix list_data_body">
+		// 							<div class="data_title">状态</div>
+		// 							<div class="data_content status"><span>'++'</span></div>
+		// 						</div>
+		// 						<div class="list_data clearfix list_data_body">
+		// 							<div class="data_title">备注</div>
+		// 							<div class="data_content">'++'</div>
+		// 						</div>
+		// 					</div>`;
+		// 	var setting = {  
+		//       url: API_BaseuUrl + "/finance/getDepositRecordList",  
+		//       method: "POST",
+		//       contentType: 'application/json',
+		//       headers:{
+		//       	token: u_token
+		//       },
+		//       data: JSON.stringify({
+		//       	"sdate": $('#b_date').val() || "",
+		//       	"edate": $('#e_date').val() || "",
+		//       	"page": 1,
+		//       	"numOfPage": 10
+		//       }) 
+	 //    	};	
+
+		// }
+
+
+		// //存款紀錄(結構上沒加上ID屬性)，僅先介接網銀存款紀錄API
+		// $('.option_funds_record , .sub_option_deposit_record').on('click', function(){
+		// 		getDepositList();
+		    
+		// 	    $.ajax(setting).done(function(data) {
+		// 	        console.log( data );
+		// 	        if(data.code == 0){		  	
+		// 	        	if(data.data.length > 0){ 
+		// 	        		$('.deposit_record').html('');
+		// 	        		for(var i = 0; i< data.data.length; i++){
+		// 	        			var remark =  data.data[i].remark? data.data[i].remark : "";      
+		// 	        			$('.deposit_record').append('<div class="list_block clearfix"><div class="list_data clearfix list_data_title"><div class="data_title">存款编号</div><div class="data_content">' + data.data[i].memberOrder + '</div></div><div class="list_data clearfix list_data_title"><div class="data_title">存款时间</div><div class="data_content">' + data.data[i].depositTime + '</div></div><div class="list_data clearfix list_data_body"><div class="data_title">存款类型</div><div class="data_content kind"><span>' + '網銀' + '</span></div></div><div class="list_data clearfix list_data_body"><div class="data_title">金额</div><div class="data_content money"><span>' +  data.data[i].depositAmount + '</span></div></div><div class="list_data clearfix list_data_body"><div class="data_title">状态</div><div class="data_content status"><span>' + data.data[i].orderStatus + '</span></div></div><div class="list_data clearfix list_data_body"><div class="data_title">备注</div><div class="data_content">' + remark + '</div></div></div>');
+		// 	        		}			        		
+		// 	        	}else{
+		// 	        		//查無資料
+		// 	        		$('.deposit_record').html('暂无相关纪录');
+		// 	        	}	         
+			        	
+		// 	        }else{
+		// 	          //Ajax成功但取得內容錯誤
+		// 	        }       
+		// 	    }).fail(function() {
+		// 	      //Ajax失敗
+		// 	    });
+		// });
+
+		// // 提款紀錄
+		// $('.sub_option_withdraw_record').on('click', function(){
+		// 	var WITHDRAW_SCHEMA = `<div class="list_block clearfix">
+		// 								<div class="list_data clearfix list_data_title">
+		// 									<div class="data_title">提款编号</div>
+		// 									<div class="data_content" id="withdraw_no">' + data.data[i].id + '</div>
+		// 								</div>
+		// 								<div class="list_data clearfix list_data_title">
+		// 									<div class="data_title">提款时间</div>
+		// 									<div class="data_content" id="withdraw_time">' + data.data[i].withdrawTime + '</div>
+		// 								</div>
+		// 								<div class="list_data clearfix list_data_body">
+		// 									<div class="data_title">提款类型</div>
+		// 									<div class="data_content kind"><span id="withdraw_bank">' + data.data[i].memberBankCard.bankInfo.bankName + '</span></div>
+		// 								</div>
+		// 								<div class="list_data clearfix list_data_body">
+		// 									<div class="data_title">补银行卡号</div>
+		// 									<div class="data_content card_num"><span id="withdraw_bank_cardno">' + data.data[i].memberBankCard.bankAccountNo + '</span></div>
+		// 								</div>
+		// 								<div class="list_data clearfix list_data_body">
+		// 									<div class="data_title">金额</div>
+		// 									<div class="data_content money"><span id="withdraw_amount">' + data.data[i].withdrawAmount + '</span></div>
+		// 								</div>
+		// 								<div class="list_data clearfix list_data_body">
+		// 									<div class="data_title">状态</div>
+		// 									<div class="data_content status"><span id="withdraw_status">' +  data.data[i].status + '</span></div>
+		// 								</div>
+										
+		// 								<span class="down_arrow"></span>
+		// 							</div>`;
+		// 			var setting = {  
+		// 	      url: API_BaseuUrl + "/finance/getMemberWithdrawRecordList",  
+		// 	      method: "POST",
+		// 	      contentType: 'application/json',
+		// 	      headers:{
+		// 	      	token: u_token
+		// 	      },
+		// 	      data: JSON.stringify({
+		// 	      	"sdate": $('#b_date').val() || "",
+		// 	      	"edate": $('#e_date').val() || "",
+		// 	      	"page": 1,
+		// 	      	"numOfPage": 10
+		// 	      }) 
+		// 	    };			    
+		// 	    $.ajax(setting).done(function(data) {
+		// 	        console.log( data );
+		// 	        if(data.code == 0){		        	
+		// 	        	if(data.data.length > 0){
+		// 	        		$('.withdraw_record').html('');
+		// 	        		for(var i = 0; i< data.data.length; i++){
+		// 	        			$('.withdraw_record').append('<div class="list_block clearfix"><div class="list_data clearfix list_data_title"><div class="data_title">提款编号</div><div class="data_content" id="withdraw_no">' + data.data[i].id + '</div></div><div class="list_data clearfix list_data_title"><div class="data_title">提款时间</div><div class="data_content" id="withdraw_time">' + data.data[i].withdrawTime + '</div></div><div class="list_data clearfix list_data_body"><div class="data_title">提款类型</div><div class="data_content kind"><span id="withdraw_bank">' + data.data[i].memberBankCard.bankInfo.bankName + '</span></div></div><div class="list_data clearfix list_data_body"><div class="data_title">补银行卡号</div><div class="data_content card_num"><span id="withdraw_bank_cardno">' + data.data[i].memberBankCard.bankAccountNo + '</span></div></div><div class="list_data clearfix list_data_body"><div class="data_title">金额</div><div class="data_content money"><span id="withdraw_amount">' + data.data[i].withdrawAmount + '</span></div></div><div class="list_data clearfix list_data_body"><div class="data_title">状态</div><div class="data_content status"><span id="withdraw_status">' +  data.data[i].status + '</span></div></div><div class="list_data clearfix list_data_body"><div class="data_content" id="withdraw_operation">' + '??' + '</div></div><span class="down_arrow"></span></div>');
+		// 	        		}
+			        		
+		// 	        	}else{
+		// 	        		//查無資料
+		// 	        		$('.withdraw_record').html('查無資料哦.. 請修改日期後重試');
+		// 	        	}	         
+			        	
+		// 	        }else{
+		// 	          //Ajax成功但取得內容錯誤
+		// 	        }       
+		// 	    }).fail(function() {
+		// 	      //Ajax失敗
+		// 	    });
+		// });
+
+		// //轉帳紀錄
+		// $('.sub_option_transfer_record').on('click', function(){
+		// 			var TRANSFER_SCHEMA = `<div class="list_block clearfix">
+		// 								<div class="list_data clearfix list_data_title">
+		// 									<div class="data_title">转帐编号</div>
+		// 									<div class="data_content" id="transfer_no">'++'</div>
+		// 								</div>
+		// 								<div class="list_data list_data_hidden clearfix list_data_title">
+		// 									<div class="data_title">提款时间</div>
+		// 									<div class="data_content" id="transfer_time">'++'</div>
+		// 								</div>
+		// 								<div class="list_data clearfix list_data_body">
+		// 									<div class="data_title">转出方</div>
+		// 									<div class="data_content" id="transfer_from">'++'</div>
+		// 								</div>
+		// 								<div class="list_data clearfix list_data_body">
+		// 									<div class="data_title">转入方</div>
+		// 									<div class="data_content" id="transfer_to">'++'</div>
+		// 								</div>																			
+		// 								<div class="list_data clearfix list_data_body">
+		// 									<div class="data_title">奖金金额</div>
+		// 									<div class="data_content money"><span id="transfer_amount">''</span></div>
+		// 								</div>
+		// 								<div class="list_data clearfix list_data_body">
+		// 									<div class="data_title">状态</div>
+		// 									<div class="data_content status"><span id="transfer_status">'++'</span></div>
+		// 								</div>
+		// 							</div>`;
+		// 			var setting = {  
+		// 	      url: API_BaseuUrl + "/finance/getTransferRecordList",  
+		// 	      method: "POST",
+		// 	      contentType: 'application/json',
+		// 	      headers:{
+		// 	      	token: u_token
+		// 	      },
+		// 	      data: JSON.stringify({
+		// 	      	"sdate": $('#b_date').val() || "",
+		// 	      	"edate": $('#e_date').val() || "",
+		// 	      	"page": 1,
+		// 	      	"numOfPage": 10
+		// 	      }) 
+		// 	    };			    
+		// 	    $.ajax(setting).done(function(data) {
+		// 	        // console.log( data );
+		// 	         console.log(JSON.stringify(data));
+		// 	        if(data.code == 0){		        	
+		// 	        	if(data.data.length > 0){
+		// 	        		$('.transfer_record').html('');
+		// 	        		for(var i = 0; i< data.data.length; i++){
+		// 	        			$('.transfer_record').append('<div class="list_block clearfix"><div class="list_data clearfix list_data_title"><div class="data_title">转帐编号</div><div class="data_content" id="transfer_no">' + data.data[i].id + '</div></div><div class="list_data list_data_hidden clearfix list_data_title"><div class="data_title">提款时间</div><div class="data_content" id="transfer_time">' + data.data[i].transferTime + '</div></div><div class="list_data clearfix list_data_body"><div class="data_title">转出方</div><div class="data_content" id="transfer_from">' + data.data[i].transferFromPlatformInfo.platformNameCn + '</div></div><div class="list_data clearfix list_data_body"><div class="data_title">转入方</div><div class="data_content" id="transfer_to">' + data.data[i].transferToPlatformInfo.platformNameCn + '</div></div><div class="list_data clearfix list_data_body"><div class="data_title">奖金金额</div><div class="data_content money"><span id="transfer_amount">' + data.data[i].transferAmount + '</span></div></div><div class="list_data clearfix list_data_body"><div class="data_title">状态</div><div class="data_content status"><span id="transfer_status">' + data.data[i].status + '</span></div></div></div>');
+		// 	        		}			        		
+		// 	        	}else{
+		// 	        		//查無資料
+		// 	        		$('.transfer_record').html('查無資料哦.. 請修改日期後重試');
+		// 	        	}	         
+			        	
+		// 	        }else{
+		// 	          //Ajax成功但取得內容錯誤
+		// 	        }       
+		// 	    }).fail(function() {
+		// 	      //Ajax失敗
+		// 	    });
+		// });
+
+		// //下注紀錄(結構上沒加上ID屬性)
+		// $('.sub_option_bet_record').on('click', function(){
+		// 			var BET_SCHEMA = `<div class="list_block clearfix">
+		// 								<div class="list_data clearfix list_data_title">
+		// 									<div class="data_title">下注编号</div>
+		// 									<div class="data_content">'++'</div>
+		// 								</div>
+		// 								<div class="list_data list_data_hidden clearfix list_data_title">
+		// 									<div class="data_title">下注时间</div>
+		// 									<div class="data_content">'++'</div>
+		// 								</div>
+		// 								<div class="list_data clearfix list_data_body">
+		// 									<div class="data_title">游戏平台</div>
+		// 									<div class="data_content">'++'</div>
+		// 								</div>
+		// 								<div class="list_data clearfix list_data_body">
+		// 									<div class="data_title">游戏名称</div>
+		// 									<div class="data_content">'++'</div>
+		// 								</div>	
+		// 								<div class="list_data clearfix list_data_body">
+		// 									<div class="data_title">投注金额</div>
+		// 									<div class="data_content money"><span>'++'</span></div>
+		// 								</div>
+		// 								<div class="list_data clearfix list_data_body">
+		// 									<div class="data_title">输赢</div>
+		// 									<div class="data_content win"><span>'++'</span></div>
+		// 								</div>															
+		// 							</div>`;
+		// 			var setting = {  
+		// 	      url: API_BaseuUrl + "/finance/getGameBetRecordList",  
+		// 	      method: "POST",
+		// 	      contentType: 'application/json',
+		// 	      headers:{
+		// 	      	token: u_token
+		// 	      },
+		// 	      data: JSON.stringify({
+		// 	      	"sdate": $('#b_date').val() || "",
+		// 	      	"edate": $('#e_date').val() || "",
+		// 	      	"page": 1,
+		// 	      	"numOfPage": 10
+		// 	      }) 
+		// 	    };			    
+		// 	    $.ajax(setting).done(function(data) {
+		// 	        console.log( data );
+		// 	        if(data.code == 0){		        	
+		// 	        	if(data.data.length > 0){
+		// 	        		$('.bet_record').html('');
+		// 	        		for(var i = 0; i< data.data.length; i++){
+		// 	        			//目前除了輸以外，贏與平手皆套用 .win 
+		// 	        			var result = data.data[i].result == 2 ? "lose" : "win";
+		// 	        			//輸贏尚未加上 +- ，可透過CSS .win>span:before 實作
+		// 	        			$('.bet_record').append('<div class="list_block clearfix"><div class="list_data clearfix list_data_title"><div class="data_title">下注编号</div><div class="data_content">' + data.data[i].id + '</div></div><div class="list_data list_data_hidden clearfix list_data_title"><div class="data_title">下注时间</div><div class="data_content">' + data.data[i].betTime + '</div></div><div class="list_data clearfix list_data_body"><div class="data_title">游戏平台</div><div class="data_content">' + data.data[i].platformInfo.platformNameCn + '</div></div><div class="list_data clearfix list_data_body"><div class="data_title">游戏名称</div><div class="data_content">' + data.data[i].platformInfo.proInfoList[0].gameInfoList[0].gameNameCn + '</div></div><div class="list_data clearfix list_data_body"><div class="data_title">投注金额</div><div class="data_content money"><span>' + data.data[i].betAmount + '</span></div></div><div class="list_data clearfix list_data_body"><div class="data_title">输赢</div><div class="data_content ' + result + '"><span>' + data.data[i].payout + '</span></div></div></div>');
+		// 	        		}			        		
+		// 	        	}else{
+		// 	        		//查無資料
+		// 	        		$('.bet_record').html('查無資料哦.. 請修改日期後重試');
+		// 	        	}	         
+			        	
+		// 	        }else{
+		// 	          //Ajax成功但取得內容錯誤
+		// 	        }       
+		// 	    }).fail(function() {
+		// 	      //Ajax失敗
+		// 	    });
+		// });
+
+		// //優惠紀錄(結構上沒加上ID屬性)
+		// $('.sub_option_promotion_record').on('click', function(){
+		// 			var PROMOTION_SCHEMA = `<div class="list_block clearfix">
+		// 								<div class="list_data clearfix list_data_title">
+		// 									<div class="data_title">优惠编号</div>
+		// 									<div class="data_content">'++'</div>
+		// 								</div>
+		// 								<div class="list_data clearfix list_data_title">
+		// 									<div class="data_title">操作时间</div>
+		// 									<div class="data_content">'++'</div>
+		// 								</div>
+		// 								<div class="list_data clearfix list_data_body">
+		// 									<div class="data_title">优惠名称</div>
+		// 									<div class="data_content discount_name"><span>'++'</span></div>
+		// 								</div>										
+		// 								<div class="list_data clearfix list_data_body">
+		// 									<div class="data_title">金额</div>
+		// 									<div class="data_content money"><span>'++'</span></div>
+		// 								</div>
+		// 							</div>`;
+		// 			var setting = {  
+		// 	      url: API_BaseuUrl + "/finance/getGetPrivilegeRecordList",  
+		// 	      method: "POST",
+		// 	      contentType: 'application/json',
+		// 	      headers:{
+		// 	      	token: u_token
+		// 	      },
+		// 	      data: JSON.stringify({
+		// 	      	"sdate": $('#b_date').val() || "",
+		// 	      	"edate": $('#e_date').val() || "",
+		// 	      	"page": 1,
+		// 	      	"numOfPage": 10
+		// 	      }) 
+		// 	    };			    
+		// 	    $.ajax(setting).done(function(data) {
+		// 	        console.log( data );
+		// 	        if(data.code == 0){		        	
+		// 	        	if(data.data.length > 0){
+		// 	        		$('.promotions_record').html('');
+		// 	        		for(var i = 0; i< data.data.length; i++){
+		// 	        			$('.promotions_record').append('<div class="list_block clearfix"><div class="list_data clearfix list_data_title"><div class="data_title">优惠编号</div><div class="data_content">' + data.data[i].privilegeRecordNumber + '</div></div><div class="list_data clearfix list_data_title"><div class="data_title">操作时间</div><div class="data_content">' + data.data[i].getTime + '</div></div><div class="list_data clearfix list_data_body"><div class="data_title">优惠名称</div><div class="data_content discount_name"><span>' + data.data[i].privilegeInfo.bonusName + '</span></div></div><div class="list_data clearfix list_data_body"><div class="data_title">金额</div><div class="data_content money"><span>' + data.data[i].bonus + '</span></div></div></div>')
+		// 	        		}			        		
+		// 	        	}else{
+		// 	        		//查無資料
+		// 	        		$('.promotions_record').html('查無資料哦.. 請修改日期後重試');
+		// 	        	}	         
+			        	
+		// 	        }else{
+		// 	          //Ajax成功但取得內容錯誤
+		// 	        }       
+		// 	    }).fail(function() {
+		// 	      //Ajax失敗
+		// 	    });
+		// });
+
+
+		//绑定银行卡滑动效果
+		var widthW = $(window).width();
+		var posX = 0;
+		$('.binding_cards>span').on('click', function(e){
+			var cardWidth = $('.card_box li').outerWidth();
+			var cardLength = 3;
+			if(widthW<767){
+				if($(this).hasClass('next')){
+					posX -= cardWidth;
+					//判断是否超出最大宽度(银行卡宽度 * 银行卡数)
+					posX = posX <= -(cardWidth*cardLength) ? 0 :  posX;
+					$('.card_box ul').css({
+						left: posX + "px"
+					});
+				}else{
+					posX += cardWidth;				
+					posX = posX > 0 ? -(cardWidth*cardLength) :  posX;			
+					$('.card_box ul').css({
+						left: posX + "px"
+					});
+				}			
+			}
+			else if(widthW>767){
+				if($(this).hasClass('next')){
+					posX -= cardWidth;
+					//与手机版一样，判断银行卡张数，若超过两张，则返回
+					posX = posX <= -(cardWidth*2) ? 0 :  posX-6;
+					$('.card_box ul').css({
+						left: posX + "px"
+					});
+				}else{
+					posX += cardWidth;				
+					posX = posX > 0 ? -(cardWidth+6) :  0;			
+					$('.card_box ul').css({
+						left: posX + "px"
+					});
+				}		
+			}	
+		});
+
+		// //站内信手风琴
+		// $('.memInfo_messages').on("click", ".msg_header", function(e){
+		// 	console.log($(e.target).parents('.msg_box').data('id'));
+		// 	var that = $(this);
+		// 	var msg_box = $(e.target).parents('.msg_box');
+		// 	var setting = {  
+	 //      url: API_BaseuUrl + "/member/getMessageDetail",  
+	 //      method: "POST",
+	 //      contentType: 'application/json',
+	 //      headers:{
+	 //      	token: u_token
+	 //      },
+	 //      data: JSON.stringify({
+	 //      	"messageDetailId": msg_box.data('id')
+	 //      }) 
+	 //    };
+
+	 //    // if(msg_box.find('.msg_content').text().length > 0){
+	 //    // 	return;
+	 //    // }
+	 //    //每次點擊都重新查詢信件內容，是否需要做特別判斷不要每次查
+	 //    $.ajax(setting).done(function(data) {
+	 //        console.log( data );
+	 //        if(data.code == 0){	        	
+	 //        	msg_box.find('.msg_content').text('');
+	 //        	msg_box.find('.msg_content').text(data.data.content); 
+
+	 //        	$('.msg_header').siblings('.msg_content').slideUp();
+		// 		    if(!that.hasClass('open')){
+		// 		      $('.msg_header').removeClass('open');
+		// 		      that.addClass('open');
+		// 		      that.find(".msg_arrow").addClass("arrowtrans");
+		// 		      that.siblings('.msg_content').slideDown();
+		// 		      $('.msg_header').css("margin-bottom","10px");
+		// 		    }else{
+		// 		    	$('.msg_header').css('margin-bottom','')
+		// 		    	$('.msg_header').removeClass('open');
+		// 		    	$('.msg_arrow').removeClass("arrowtrans");
+		// 		    } 
+	 //        }else{
+	 //          //Ajax成功但取得內容錯誤
+	 //          msg_box.find('.msg_content').text("站內信內容有誤，請稍後在試.."); 
+	 //        }       
+	 //    }).fail(function() {
+	 //      //Ajax失敗
+	 //    });		 
+		// });
+
+
+		
+		// var MSG_SCHEMA = `<div class="msg_box clearfix">
+		// 							  <div class="chk">  
+		// 							    <input type="checkbox" name="chk"/>
+		// 							  </div>
+		// 							  <div class="msg_header no_tap_highlight">
+		// 							    <div class="msg_title"><b></b></div>
+		// 							    <img src="img/icons/arrowDown@3x.png" class="msg_arrow">
+		// 							    <div class="msg_time"></div>  
+		// 							  </div>
+		// 							  <div class="msg_content"></div>
+		// 							</div>`;
+		// //取得站內信標題(取第一頁，一頁10筆)
+		// $('.option_messages').on('click', function(){
+		// 	var setting = {  
+	 //      url: API_BaseuUrl + "/member/getMessageTitleList",  
+	 //      method: "POST",
+	 //      contentType: 'application/json',
+	 //      headers:{
+	 //      	token: u_token
+	 //      },
+	 //      data: JSON.stringify({
+	 //      	"sdate": "2017-05-01",
+	 //      	"edate": "2017-06-30",
+	 //      	"page": 1,
+	 //      	"numOfPage": 10
+	 //      }) 
+	 //    };
+	 //    $.ajax(setting).done(function(data) {
+	 //        console.log( data );
+	 //        if(data.code == 0){
+	 //        	var msg_content = $('.memInfo_messages .message_content');
+	 //        	msg_content.html('');   
+	 //        	if(data.data.length > 1){
+	 //        		for(var i = 0; i < data.data.length; i++){
+		//         		// data.data[i].title
+		//         		msg_content.append('<div class="msg_box clearfix" data-id="' + data.data[i].id + '"><div class="chk"><input type="checkbox" name="chk"/></div><div class="msg_header no_tap_highlight"><div class="msg_title"><b>' + data.data[i].title + '</b></div><img src="img/icons/arrowDown@3x.png" class="msg_arrow"><div class="msg_time">' + data.data[i].sendTime + '</div></div><div class="msg_content"></div></div>');
+		//         	}
+	 //        	}else{
+	 //        		//無站內信
+	 //        		msg_content.append("目前還沒有站內信哦..");
+	 //        	}          
+	        	
+	 //        }else{
+	 //          //Ajax成功但取得內容錯誤
+	 //        }       
+	 //    }).fail(function() {
+	 //      //Ajax失敗
+	 //    });
+		// });
+
+		// //站内信全选按钮
+		// $('.select_all input').on("change", function(){
+		// 	$('.chk input').prop("checked", $(this).prop('checked'));
+		// });
+		// $('.chk input').on("change", function(){
+		// 	$('.select_all input').prop("checked", false);
+		// });
+
+		// //站内信删除按钮
+		// $('.select_delete').on("click", function(){
+		// 	console.log("click delete btn");
+		// });
+
+
+		//郵箱驗證
+		$('.btn-check-email').on('click', function(){
+			validationBox("mail");
+		});
+		//手機驗證
+		$('.btn-check-phone').on('click', function(){
+			validationBox("phone");
+		});
+
+
+		
+	</script>
+</body>
+</html>
